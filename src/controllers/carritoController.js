@@ -45,7 +45,7 @@ function elimina(req, res) {
   req.getConnection((err, conn) => {
     conn.query('SELECT * FROM carrito WHERE id_producto = ? AND id_usuario = ?', [data.id_producto, name], (err, rows) => {
       console.log(rows)
-      const can = rows[2].cantidad - 1;
+      const can = rows[0].cantidad - 1;
       if (can >= 1) {
         req.getConnection((err, conn) => {
           conn.query('UPDATE carrito SET cantidad = ? WHERE id_producto= ? AND id_usuario = ?', [can, data.id_producto, name], (errr, carr) => {
