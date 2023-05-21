@@ -10,7 +10,7 @@ router.get('/register', LoginController.register);
 router.post('/register', LoginController.storeUser);
 router.post('/login', LoginController.auth);
 router.get('/logout', LoginController.logout);
-router.get('/personal', LoginController.personal);
+
 
 router.get('/carrito', carritoController.indexcr);
 router.post('/pers/agregar', carritoController.agregar);

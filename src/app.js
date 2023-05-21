@@ -4,7 +4,7 @@ console.log('iniciando');
 const express = require('express');
 const { engine } = require('express-handlebars');
 const myconnection = require('express-myconnection');
-const mysql = require('mysql2');
+const mysql = require('mysql');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const { Session } = require('express-session');
@@ -103,34 +103,19 @@ app.get('/', (req,res) => {
         console.log(req.oidc.user)
         let val = /\w+@\w.+[edu]+\.mx/;
         if(!val.test(req.oidc.user.email)){
-            //console.log('error')
-            
-            res.redirect('/logout')
-        }else{
-            res.render('home',{name: req.oidc.user.name});  }      
-    } else {
-        console.log("NO autenticado");
-        res.redirect('/login');
-    }
-})
 
-app.get('/', (req,res) => {
-    //if (req.session.loggedin == true) {
-    if(req.oidc.isAuthenticated()) {
-        console.log(req.oidc.user)
-        let val = /\w+@\w.+[edu]+\.mx/;
-        if(!val.test(req.oidc.user.email)){
             //console.log('error')
             
             res.redirect('/logout')
         }else{
+            //req.session.email = req.oidc.name.email
             req.getConnection((err, conn) => {
                 conn.query('SELECT  a.costo, a.unidad, a.id_producto, a.name, b.descripcion, a.precio, c.description, a.imagen FROM product a, articulo b, units c WHERE a.tipo_art=b.tipo_art and a.unidad=c.unidad ORDER BY `name` ASC', (err, pers) => {
                   if(err) {
                     res.json(err);
                   }
                   console.log("--------",pers)
-                  res.render('home',{name: req.oidc.user.name,pers});
+                  res.render('pages/menu',{name: req.oidc.user.name,pers});
                 });
               });       
              }      

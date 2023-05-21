@@ -1,19 +1,22 @@
-
+//se crea una constante que requiere y llama a 'bcrypt' que encripta informacion
 const bcrypt = require('bcrypt');
 
-
+//esta funcion sirve que al tener una sesion inciada ira a la raiz
+//pero si la condicion no se cumple renderizara al Login
 function index(req, res) {
   console.log("Entre");
   if(req.oidc.isAuthenticated()){
     console.log("Autentidado");
-  res.redirect("/register");
+  res.redirect("/");
   } else{
     console.log("NO autentidado");
-    res.render("/personal");
+    res.render("/logout");
 
   }
 }
 
+//esta funcion sirve que al tener una sesion inciada ira a la raiz
+//pero si la condicion no se cumple ira del login al register
 function register(req, res) {
   if (req.session.loggedin) {
     res.redirect('/');
@@ -23,6 +26,10 @@ function register(req, res) {
   
 }
 
+//La fuincion tiene el trabajo de verificar si el usuario (email) se repite (Con el querie) entra a una condicion
+//Que si es asi mandara un error al Usuario que dira 'El usuario ya existe'
+//Si no es asi, la password se encriptara con la costante de 'bcrypt'
+//Y toda la informacion del formulario se insertara a la base de datos (con el querie) 
 function storeUser(req,res){
   const data=req.body;
   req.getConnection((err,conn) => {
@@ -46,7 +53,10 @@ function storeUser(req,res){
   });
 } 
 
-
+//La fuincion hace una comparacion con la base de datos y la informacion dada en el formulario (Querie)
+//Compara si el usuario (email) y el password es la misma con la base de datos, si es asi entarar a la raiz
+//Si la informacion es erronea mandara un error que indicara que la informacion es incorrecta (siempre y cuando el email este en la base de datos)
+//Si el email dado no se encuentra en la base de datos se mandara un error al usuario que le diara que la informacion no existe en ella
 function auth(req, res) {
   const data = req.body;
 	//let email = req.body.email;
@@ -75,6 +85,7 @@ function auth(req, res) {
   });
 }
 
+//Hace que la sesion iniciada se cierrre y redirige al la pagina de "Login"
 function logout(req, res) {
   if (req.session.loggedin == true) {
     req.session.destroy();
@@ -82,18 +93,14 @@ function logout(req, res) {
   res.redirect('/login');
 }
 
-function personal(req, res) {
-  res.render('pages/personal');
-}
 
-
+//se exportan las funciones globalmente 
 module.exports = {
   index: index,
   register: register,
   auth: auth,
   logout: logout,
   storeUser: storeUser,
-  personal: personal,
 
 }
 

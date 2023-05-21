@@ -52,7 +52,7 @@
           <th class="w-5 py-2 px-2..."></th>
           <th class="w-5 py-4 px-5...">Cantidad</th>
           <th class="w-5 py-2 px-2..."></th>
-          <th class="w-5 py-4 px-4 ...">Total</th>
+          <th class="w-5 py-4 px-4 ..."></th>
         </tr>
       </thead>
       {{#each pers}}
@@ -70,11 +70,11 @@
                 </svg>
             </form>
           </td>
-
+          <!--muestra la cantidad de unidades hay en el carrito-->
           <td class="p-4 px-5 bg-gray-300...">{{cantidad}}</td>
             
           <td class=" bg-pink-500...">
-            <!--boton editar producto-->
+            <!--agrega un producto mas al la cantidad total-->
             <form action="/pers/agregar" method="POST" class="mx-2">
               <input type="hidden" value="{{id_producto}}" name="id_producto">
               <button class="bg-green-600 text-white px-3 py-2 rounded-sm hover:bg-green-700" type="submit">
@@ -84,7 +84,7 @@
               </button>  
             </form>
           </td>
-
+            <!--muestra el costo del producto-->
           <td class="p-4 flex bg-blue-500...">{{costo}}</td>
         {{/each}}
       </tbody>
