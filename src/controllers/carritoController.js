@@ -64,7 +64,7 @@ function elimina(req, res) {
             res.redirect('/carrito')
           });
         });
-      } else {
+      } else if (can <= 0){
         //si esta la cantidad de una unidad, se elimina de la tabla de carrito
         req.getConnection((errr, conn) => {
           conn.query('DELETE FROM carrito WHERE id_producto= ? AND id_usuario = ?', [data.id_producto, name], (err, carr) => {
