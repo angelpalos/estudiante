@@ -94,7 +94,7 @@ function pedido(req, res){
           req.getConnection((err,conn) =>{
             conn.query('INSERT INTO detalle (folio,id_producto,cantidad,precio) SELECT ?,a.id_producto,a.cantidad,b.precio FROM carrito a, product b WHERE a.id_usuario = "?" AND a.id_producto = b.id_producto',[nump,name],(err,re) =>{
               if (err) throw err
-              res.redirect('pages/compra')
+              res.redirect('/')
             })
           })
         })
@@ -109,8 +109,8 @@ function recp(req,res) {
   req.getConnection((err, conn) => {
     //selecciona la tabla de carrito
     conn.query('SELECT a.folio,a.fecha,a.status,a.corre_emp,a.correo_clie,b.cantidad,b.precio,c.name FROM pedido a,detalle b, product c WHERE a.folio = ? AND a.folio = b.folio AND b.id_producto = c.id_producto',[id],(err,ped)=>{
-          console.log(ped);
-          res.render('pages/compra',{ped})
+      console.log(ped);
+      res.render('pages/compra',{ped})
   })})
 }
 
