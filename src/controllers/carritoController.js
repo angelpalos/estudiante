@@ -94,7 +94,7 @@ function pedido(req, res){
           req.getConnection((err,conn) =>{
             conn.query('INSERT INTO detalle (folio,id_producto,cantidad,precio) SELECT ?,a.id_producto,a.cantidad,b.precio FROM carrito a, product b WHERE a.id_usuario = "?" AND a.id_producto = b.id_producto',[nump,name],(err,re) =>{
               if (err) throw err
-              res.redirect('/comprar')
+              //res.redirect('/comprar')
             })
           })
         })
