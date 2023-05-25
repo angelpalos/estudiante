@@ -86,11 +86,20 @@
           </td>
             <!--muestra el costo del producto-->
           <td class="p-4 flex bg-blue-500...">{{costo}}</td>
+
         {{/each}}
       </tbody>
 
     </table>
   </div>
+  <center>
+      <form class="mx-2">
+        <input  type="hidden" name="id_compra">
+          <a href="/comprar" class="boton-comprar btn btn-primary mt-3" type="submit" >
+            <h5 class="texto-boton">Comprar ahora</h5>
+          </a>
+      </form>
+    </center>
 </div>
 </body>
 </html>
