@@ -83,11 +83,9 @@ function pedido(req, res){
   let date = new Date();
   let datenow =  date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0') + '-' + String(date.getDate()).padStart(2, '0');
   req.getConnection((err, conn) => {
-    //selecciona la tabla de carrito
     conn.query("INSERT INTO pedido (fecha,status,corre_emp,correo_clie) VALUES (?,'U','nulo',?)",[datenow,name],(err,row)=>{
       if(err) throw err
       req.getConnection((err, conn) => {
-        //selecciona la tabla de carrito
         conn.query('SELECT * FROM pedido',(err,data)=>{
           if(err) throw err
           const nump = data.length
