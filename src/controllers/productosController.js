@@ -7,7 +7,7 @@ function indexp(req, res) {
         if(err) {
           res.json(err);
         }
-        console.log("--------",pers)
+        //console.log("--------",pers)
         res.render('pages/productos', { pers });
       });
     });
@@ -68,7 +68,7 @@ function indexp(req, res) {
           conn.query('SELECT * FROM articulo', (err, art)=>{
             req.getConnection((err, conn)=>{
               conn.query('SELECT * FROM units', (err, uni)=>{
-                console.log(art)
+                //console.log(art)
                 res.render('pages/editprod', { pers, art, uni})
               })
             })
@@ -96,12 +96,12 @@ function indexp(req, res) {
   function buscar(req, res){
     const data = req.body;
     const busc = data.buscador + '%'
-    console.log(busc)
+    //console.log(busc)
     req.getConnection((err, conn)=>{
       conn.query("SELECT a.costo, a.unidad, a.id_producto, a.name, b.descripcion, a.precio, c.description FROM product a, articulo b, units c WHERE a.tipo_art=b.tipo_art and a.unidad=c.unidad and a.name LIKE ? ORDER BY `name` ASC ", [busc], (err, pers) => {
-        console.log(data.buscador)
-        console.log(err)
-        console.log(pers)
+        //console.log(data.buscador)
+        //console.log(err)
+        //console.log(pers)
         res.render('pages/productos', {pers})
         
       });
@@ -114,7 +114,7 @@ function indexp(req, res) {
         if(err) {
           res.json(err);
         }
-        console.log("--------",pers)
+        //console.log("--------",pers)
         res.render('pages/menu', { pers, name:req.session.name});
       });
     });

@@ -7,7 +7,7 @@ function indexcr(req, res) {
       if (err) {  
         res.json(err);
       }
-      console.log("--------", pers)
+      //console.log("--------", pers)
       //rederiza la pagina de carrito
       res.render('pages/carrito', { pers, name: req.oidc.user.name });
     });
@@ -50,11 +50,11 @@ function agregar(req, res) {
 function elimina(req, res) {
   const data = req.body;
   const name = req.oidc.user.email
-  console.log(data)
+  //console.log(data)
   req.getConnection((err, conn) => {
     //selecciona la tabla de carrito
     conn.query('SELECT * FROM carrito WHERE id_producto = ? AND id_usuario = ?', [data.id_producto, name], (err, rows) => {
-      console.log(rows)
+      //console.log(rows)
       //valida si ya existe el producto, si es asi se actualiza la columna de cantidad restando una unidad
       const can = rows[0].cantidad - 1;
       if (can >= 1) {
