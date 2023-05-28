@@ -16,7 +16,7 @@ router.get('/carrito', carritoController.indexcr);
 router.post('/pers/agregar', carritoController.agregar);
 router.post('/pers/elimina', carritoController.elimina);
 router.get('/comprar', carritoController.pedido)
-router.get('/pedido/',carritoController.recp)
+router.get('/pedido/:32',carritoController.recp)
 
 
 module.exports = router;

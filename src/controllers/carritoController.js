@@ -96,7 +96,7 @@ function pedido(req, res){
               if (err) throw err
               req.getConnection((err,conn) => {
                 conn.query('DELETE FROM carrito WHERE id_usuario = ?',[name],(err,rowa) => {
-                  res.redirect('/pedido/' + nump)
+                  res.redirect('/pedido/' + 32)
                 })
               })
             //})
