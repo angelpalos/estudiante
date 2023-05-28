@@ -1,13 +1,37 @@
 <style>
   /*imangen boton elimina,agrega*/
   svg,path{
-    color:white;
+    color: #ffffff;
     width: 23px;
     height: 23px;
-  }h1{
+  }.error h2{
+    color: #000000;
+    font-size: 25px;
+    font-family: ;
+  }.boton-comprar{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: x-large;
+    font-size: xx-large;
+    margin-top: 25px;
+    background-color: #0254eb; /*#0254eb*/
+    color: #ffffff;
+    width: 250px;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 1px 1px 20px 1px gray;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 950px;
+    
+    
+  }.boton-comprar:hover{
+    background-color: #2b6ee9;;
+  }.texto-boton{
+    margin-top: 7px;
+    
   }
+
+    
+    
   
   
 </style>
@@ -88,18 +112,25 @@
 
     </table>
   </div>
-  <center>
+  <div class="boton-compra">
+    
       <form class="mx-2">
         <input  type="hidden" name="id_compra">
-          <a href="/comprar" class="boton-comprar btn btn-primary mt-3" type="submit" >
+          <a href="/comprar" class="boton-comprar" type="submit" >
             <h5 class="texto-boton">Comprar ahora</h5>
           </a>
       </form>
-    </center>
+    
+  </div>
+  
   {{else}}
+ <div class="error">
   <center>
-    <h1>El carrito se encuentra vacio</h1>
+    <h2>El carrito se encuentra vacio</h2>
   </center>
+
+ </div>
+  
   </div>
   
   {{/if}}

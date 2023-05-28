@@ -82,7 +82,7 @@ app.use(session({
 
 //---------------------------------------------------------
 // auth router attaches /login, /logout, and /callback routes to the baseURL
-app.use(auth(config));
+app.use(auth(config));  //ERROR
 
 //---------------------------------------------------------
 
